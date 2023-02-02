@@ -22,7 +22,7 @@ def get_params():
     text_msg ="My name is " + name + " and I am " + str(age) + " years old" 
     try:
         #line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
-        return "Hello!"
+        return text_msg
     except LineBotApiError as e:
         print("LineBot Error:{0}".format(e.message))
     return jsonify(message=text_msg)
