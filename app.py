@@ -1,12 +1,14 @@
 import os
 from datetime import datetime
 
-from flask import Flask, abort, request
+from flask import Flask, abort, request, jsonify
 
 # https://github.com/line/line-bot-sdk-python
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+
+import configparser
 
 app = Flask(__name__)
 
