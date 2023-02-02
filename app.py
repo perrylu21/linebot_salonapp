@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ.get("CHANNEL_ACCESS_TOKEN"))
 handler = WebhookHandler(os.environ.get("CHANNEL_SECRET"))
-user_id = U993e4bed50c6b80ac697b078fda84a01
+user_id = "U993e4bed50c6b80ac697b078fda84a01"
 
 @app.route("/",methods=["GET"])
 def get_params():
