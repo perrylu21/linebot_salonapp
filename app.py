@@ -21,7 +21,8 @@ def get_params():
     age = int(request.args.get('age'))
     text_msg ="My name is " + name + " and I am " + str(age) + " years old" 
     try:
-        line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
+        #line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
+        return "Hello!"
     except LineBotApiError as e:
         print("LineBot Error:{0}".format(e.message))
     return jsonify(message=text_msg)
