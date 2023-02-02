@@ -14,6 +14,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ.get("CHANNEL_ACCESS_TOKEN"))
 handler = WebhookHandler(os.environ.get("CHANNEL_SECRET"))
+user_id = U993e4bed50c6b80ac697b078fda84a01
 
 @app.route("/",methods=["GET"])
 def get_params():
@@ -21,7 +22,7 @@ def get_params():
     age = int(request.args.get('age'))
     text_msg ="My name is " + name + " and I am " + str(age) + " years old" 
     try:
-        #line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
+        line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
         return text_msg
     except LineBotApiError as e:
         print("LineBot Error:{0}".format(e.message))
