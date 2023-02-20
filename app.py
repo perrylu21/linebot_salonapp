@@ -48,7 +48,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    get_message = "Happy 2023,"
+    get_message = "Happy New Year 2023,"
     get_message += event.message.text
 
     # Send To Line
