@@ -27,8 +27,8 @@ def get_params():
     name_par = request.args.get('name')
     time_par = request.args.get('time')
     #age = int(request.args.get('age'))
-    timestr = convert_date_time(time_par)
-    text_msg ="Name:" + name_par + "\n"+"Reservation:" + timestr
+    #timestr = convert_date_time(time_par)
+    text_msg ="Name:" + name_par + "\n"+"Reservation:" + time_par
     try:
         line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
         return text_msg
