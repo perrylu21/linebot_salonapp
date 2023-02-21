@@ -1,0 +1,3 @@
+Use webservice as below
+https://linebot-salonapp.herokuapp.com/?name=peter&age=45
+

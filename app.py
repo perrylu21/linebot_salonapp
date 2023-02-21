@@ -12,9 +12,15 @@ import configparser
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi(os.environ.get("CHANNEL_ACCESS_TOKEN"))
-handler = WebhookHandler(os.environ.get("CHANNEL_SECRET"))
-user_id = "U993e4bed50c6b80ac697b078fda84a01"
+#line_bot_api = LineBotApi(os.environ.get("CHANNEL_ACCESS_TOKEN"))
+#handler = WebhookHandler(os.environ.get("CHANNEL_SECRET"))
+#user_id = "U993e4bed50c6b80ac697b078fda84a01"
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
+handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
+user_id = config.get('line-bot', 'user_id')
 
 @app.route("/",methods=["GET"])
 def get_params():
