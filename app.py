@@ -24,9 +24,11 @@ user_id = config.get('line-bot', 'user_id')
 
 @app.route("/",methods=["GET"])
 def get_params():
-    name = request.args.get('name')
-    age = int(request.args.get('age'))
-    text_msg ="My name is " + name + " and I am " + str(age) + " years old" 
+    name_par = request.args.get('name')
+    time_par = request.args.get('time')
+    #age = int(request.args.get('age'))
+    timestr = convert_date_time(time_par)
+    text_msg ="Name:" + name_par + "\n"+"Reservation:" + timestr
     try:
         line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
         return text_msg
@@ -60,3 +62,17 @@ def handle_message(event):
     # Send To Line
     reply = TextSendMessage(text=f"{get_message}")
     line_bot_api.reply_message(event.reply_token, reply)
+
+def convert_date_time(timestr):
+    #ex
+    #2023-01-03-14-25-00 => 2023/01/03 14:25:00
+    slist = list(timestr)
+    for i,c in enumerate(slist):
+        if i == 4 or i == 7:
+            slist[i] = '/'
+        elif i == 10:
+            slist[i] = ' '
+        elif i == 13 or i == 16:
+            slist[i] = ':'
+    s = ''.join(slist)    
+    print(s)
