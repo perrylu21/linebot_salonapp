@@ -25,7 +25,7 @@ user_id = config.get('line-bot', 'user_id')
 @app.route("/",methods=["GET"])
 def get_params():
    
-    date_par = request.ars.get('date')
+    date_par = request.args.get('date')
     #time_par = request.args.get('time')
     name_par = request.args.get('name')
     srv_par = request.args.get('service')
