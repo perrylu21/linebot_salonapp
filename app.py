@@ -45,8 +45,8 @@ def get_params():
         print("LineBot Error:{0}".format(e.message))
     return jsonify(message=text_msg)
 
-#@app.route("/", methods=["GET", "POST"])
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET", "POST"])
+#@app.route("/", methods=["POST"])
 def callback():
 
     if request.method == "GET":
