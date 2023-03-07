@@ -25,7 +25,7 @@ user_id = config.get('line-bot', 'user_id')
 @app.route("/",methods=["GET"])
 def get_params():
    
-    #date_par = request.ars.get('date')
+    date_par = request.ars.get('date')
     #time_par = request.args.get('time')
     name_par = request.args.get('name')
     srv_par = request.args.get('service')
@@ -36,7 +36,8 @@ def get_params():
     #          "姓名:" + name_par + "\n" + \
     #          "服務:" + srv_par    
     text_msg = "姓名:" + name_par + "\n" + \
-               "服務:" + srv_par 
+               "服務:" + srv_par + "\n" + \
+               "時間:" + date_par + "\n"
         
     try:
         line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))

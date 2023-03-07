@@ -1,3 +1,5 @@
 Use webservice as below
 https://linebot-salonapp.herokuapp.com/?name=peter&age=45
 
+https://linebot-salonapp.herokuapp.com/?name=陳鍵志&service=足保
+
