@@ -6,7 +6,7 @@ from flask import Flask, abort, request, jsonify
 # https://github.com/line/line-bot-sdk-python
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage,JoinEvent, LeaveEvent
+from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 import configparser
 
@@ -24,7 +24,7 @@ user_id = config.get('line-bot', 'user_id')
 
 @app.route("/",methods=["GET"])
 def get_params():
-    print('get_params...')
+   
     date_par = request.args.get('date')
     time_par = request.args.get('time')
     name_par = request.args.get('name')
@@ -42,7 +42,6 @@ def get_params():
         
     try:
         line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
-        #line_bot_api.reply_message()
         return text_msg
     except LineBotApiError as e:
         print("LineBot Error:{0}".format(e.message))
@@ -61,7 +60,6 @@ def callback():
         try:
             handler.handle(body, signature)
         except InvalidSignatureError:
-            print('Invalid Signature Error')
             abort(400)
 
         return "OK"
@@ -71,13 +69,10 @@ def callback():
 def handle_message(event):
     get_message = "Happy New Year 2023,"
     get_message += event.message.text
-    UserID = event.source.user_id 
-    print("USER_ID:%s"%UserID)
-    profile = line_bot_api.get_profile(UserID)
-    print(profile)
+
     # Send To Line
-    reply_msg = TextSendMessage(text=f"{get_message}")
-    line_bot_api.reply_message(event.reply_token, reply_msg)
+    reply = TextSendMessage(text=f"{get_message}")
+    line_bot_api.reply_message(event.reply_token, reply)
 
 def convert_date_time(timestr):
     #ex
