@@ -53,7 +53,7 @@ def get_params():
 def callback():
 
     if request.method == "GET":
-        return "Welcome Linebot Salon App"
+        return "Welcome to Linebot Salon App"
     if request.method == "POST":
         signature = request.headers["X-Line-Signature"]
         body = request.get_data(as_text=True)
@@ -69,7 +69,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    get_message = "Happy New Year 2023,"
+    get_message = "Thanks for using Linebot, "
     get_message += event.message.text
     UserID = event.source.user_id 
     print("USER_ID:%s"%UserID)

@@ -4,3 +4,6 @@ https://linebot-salonapp.herokuapp.com/?name=peter&age=45
 https://linebot-salonapp.herokuapp.com/?name=陳鍵志&service=足保&date=2023-10-11&time=11:00:00
 
 https://linebot-salonapp.herokuapp.com/?name=%E9%99%B3%E9%8D%B5%E5%BF%97&service=%E8%B6%B3%E4%BF%9D&date=2023-10-11&time=11:00:00
+
+check log
+>heroku logs --app=linebot-salonapp
