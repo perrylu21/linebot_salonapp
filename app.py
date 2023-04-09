@@ -1,12 +1,12 @@
 import os
 from datetime import datetime
-
+import requests
 from flask import Flask, abort, request, jsonify
-
+import json
 # https://github.com/line/line-bot-sdk-python
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage,JoinEvent, LeaveEvent
+from linebot.models import *
 
 import configparser
 
@@ -53,7 +53,7 @@ def get_params():
 def callback():
 
     if request.method == "GET":
-        return "Welcome to Linebot Salon App"
+        return "Welcome to Linebot iSalon App"
     if request.method == "POST":
         signature = request.headers["X-Line-Signature"]
         body = request.get_data(as_text=True)
@@ -69,16 +69,32 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    get_message = "Thanks for using Linebot, "
+    get_message = "Thanks for using iSalonbot, "
     get_message += event.message.text
-    UserID = event.source.user_id 
-    print("USER_ID:%s"%UserID)
-    profile = line_bot_api.get_profile(UserID)
-    print(profile)
+    message_type = event.message.type
+    reply_token = event.reply_token    
+    if 'user_id' in event.source:
+        user_id = event.source.user_id 
+        user_profile = line_bot_api.get_profile(user_id)
+        print(user_profile)
+        #display flex message menu with linebot
+        FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
+        line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
+        #pass user id to iSalon web app
+        params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
+        response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
+            data=params)
+        print(response.status_code)
+        print(response.url)
+        print(response.text)
+        
+    else:
+        print('User ID not exists.')
     # Send To Line
-    reply_msg = TextSendMessage(text=f"{get_message}")
-    line_bot_api.reply_message(event.reply_token, reply_msg)
-
+    #reply_msg = TextSendMessage(text=f"{get_message}")
+    #line_bot_api.reply_message(event.reply_token, reply_msg)
+    
+    
 def convert_date_time(timestr):
     #ex
     #2023-01-03-14-25-00 => 2023/01/03 14:25:00
