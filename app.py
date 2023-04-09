@@ -74,22 +74,22 @@ def handle_message(event):
     message_type = event.message.type
     reply_token = event.reply_token    
     user_id = event.source.user_id 
-    try:
-        user_profile = line_bot_api.get_profile(user_id)
-        print(user_profile)
-        #display flex message menu with linebot
-        FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
-        line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
-        #pass user id to iSalon web app
-        params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
-        response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
-            data=params)
-        print(response.status_code)
-        print(response.url)
-        print(response.text)
+    #try:
+    user_profile = line_bot_api.get_profile(user_id)
+    print(user_profile)
+    #display flex message menu with linebot
+    FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
+    line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
+    #pass user id to iSalon web app
+    params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
+    response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
+        data=params)
+    print(response.status_code)
+    print(response.url)
+    print(response.text)
         
-    except:
-        print('Fail to reply message.')
+    #except:
+    #    print('Fail to reply message.')
     # Send To Line
     #reply_msg = TextSendMessage(text=f"{get_message}")
     #line_bot_api.reply_message(event.reply_token, reply_msg)
