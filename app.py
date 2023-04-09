@@ -87,7 +87,7 @@ def handle_message(event):
         data=params)
     print(response.status_code)
     print(response.url)
-    print(response.text)
+    #print(response.text)
         
     #except:
     #    print('Fail to reply message.')
