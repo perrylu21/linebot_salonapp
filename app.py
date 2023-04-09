@@ -81,7 +81,8 @@ def handle_message(event):
     FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
     line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
     #pass user id to iSalon web app
-    params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
+    #params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
+    params = {'UserLineId':user_profile['userId']}
     response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
         data=params)
     print(response.status_code)
