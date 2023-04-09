@@ -73,8 +73,8 @@ def handle_message(event):
     get_message += event.message.text
     message_type = event.message.type
     reply_token = event.reply_token    
-    if 'user_id' in event.source:
-        user_id = event.source.user_id 
+    user_id = event.source.user_id 
+    try:
         user_profile = line_bot_api.get_profile(user_id)
         print(user_profile)
         #display flex message menu with linebot
@@ -88,8 +88,8 @@ def handle_message(event):
         print(response.url)
         print(response.text)
         
-    else:
-        print('User ID not exists.')
+    except:
+        print('Fail to reply message.')
     # Send To Line
     #reply_msg = TextSendMessage(text=f"{get_message}")
     #line_bot_api.reply_message(event.reply_token, reply_msg)
