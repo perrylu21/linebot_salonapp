@@ -87,7 +87,7 @@ def handle_message(event):
     #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
     #    data=json.dumps(user_data),headers=headers)
     response = requests.get('https://www.ez-nail.com/eznail_mobile_hnp/',
-        param=user_data,headers=headers)
+        params=user_data,headers=headers)
     
     print(response.status_code)
     print(user_data)
