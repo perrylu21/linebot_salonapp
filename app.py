@@ -78,11 +78,11 @@ def handle_message(event):
     user_profile = line_bot_api.get_profile(user_id)
     print(user_profile)
     #display flex message menu with linebot
-    FlexMessage = json.load(open('card1.json','r',encoding='utf-8'))
+    FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
     line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
     #pass user id to iSalon web app
     #params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
-    user_data = {'UserLineId':user_profile.user_id,'UserDisplayName': user_profile.display_name}
+    user_data = {'UserLineId':user_profile.user_id,'UserDisplayName': user_profile.display_name,'SalonID':420}
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
     #    data=json.dumps(user_data),headers=headers)
