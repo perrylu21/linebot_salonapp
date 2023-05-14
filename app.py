@@ -77,10 +77,10 @@ def handle_message(event):
     #try:
     user_profile = line_bot_api.get_profile(user_id)
     print('Profile:\n')
-    print(user_profile.display_name)
+    print(user_profile)
     #User Display name may contain white space, need to trim space
     user_display_str = user_profile.display_name 
-    user_display_str = user_display_str.strip()
+    user_display_str = user_display_str.replace(" ","")
     print(user_display_str)
     #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
     url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
