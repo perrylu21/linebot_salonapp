@@ -2,7 +2,7 @@
     "type": "bubble",
     "hero": {
       "type": "image",
-      "url": "https://i.imgur.com/nBsbESn.png",
+      "url": "https://www.ez-nail.com/eznail_mobile_hnp/salon-icon.png",
       "size": "full",
       "aspectRatio": "20:13",
       "aspectMode": "cover"
@@ -34,20 +34,6 @@
           "contents": [
             {
               "type": "icon",
-              "url": "https://i.imgur.com/4G4LFjU.png"
-            },
-            {
-              "type": "text",
-              "text": "ebooking@ez-nail.com"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "baseline",
-          "contents": [
-            {
-              "type": "icon",
               "url": "https://i.imgur.com/gzfW90Q.png"
             },
             {
@@ -66,7 +52,7 @@
           "type": "button",
           "action": {
             "type": "uri",
-            "label": "iSalon 愛沙龍",
+            "label": "iSalon 線上預約",
             "uri": "https://www.ez-nail.com/eznail_mobile_hnp/default.aspx?salonid=420"
           }
         }

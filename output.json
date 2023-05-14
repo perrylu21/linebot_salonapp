@@ -1,0 +1,75 @@
+{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://i.imgur.com/nBsbESn.png",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "iSalon Pos Linebot",
+        "size": "xl",
+        "weight": "bold",
+        "color": "#0099ff"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Salon Pos \u7b2c\u4e00\u54c1\u724c"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://i.imgur.com/4G4LFjU.png"
+          },
+          {
+            "type": "text",
+            "text": "ebooking@ez-nail.com"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://i.imgur.com/gzfW90Q.png"
+          },
+          {
+            "type": "text",
+            "text": "https://www.ez-nail.com/eznail_mobile_hnp/default.aspx?salonid=420"
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "iSalon \u611b\u6c99\u9f8d",
+          "uri": "https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
+        }
+      }
+    ]
+  }
+}
