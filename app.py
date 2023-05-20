@@ -21,7 +21,7 @@ config.read('config.ini')
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 user_id = config.get('line-bot', 'user_id')
-salon_id = '000' #default
+
 
 @app.route("/",methods=["GET"])
 def get_params():
@@ -54,6 +54,11 @@ def get_params():
 def callback():
     salon_id = request.args.get('salonId') #WebHook default params
     print('salonID:%s'%salon_id)
+    #write salon_id in webHook to init file 
+    config['line-bot']['salon_id'] = salon_id
+    with open('config.ini', 'w') as configfile:
+        config.write(configfile)
+        
     if request.method == "GET":
         return "Welcome to Linebot iSalon App"
     if request.method == "POST":
@@ -78,12 +83,13 @@ def handle_message(event):
     user_id = event.source.user_id 
     try:
         user_profile = line_bot_api.get_profile(user_id)
-        print('Profile:\n')
+        print('Profile:')
         print(user_profile)
         #User Display name may contain white space, need to trim space
         #user_display_str = user_profile.display_name 
         #user_display_str = user_display_str.replace(" ","")
         #print(user_display_str)
+        salon_id = config.get('line-bot', 'salon_id')
         #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
         url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
                     + 'SalonID=' + salon_id
