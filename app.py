@@ -66,7 +66,7 @@ def get_params():
     #execute push message   
     try:
         #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
-        line_bot_api.push_message(lineid_par,FlexSendMessage(alt_text='booking',content=json_data.decode()))
+        line_bot_api.push_message(lineid_par,FlexSendMessage(alt_text='booking',contents=json_data.decode()))
         
         #FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
 
