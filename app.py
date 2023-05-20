@@ -30,6 +30,7 @@ def get_params():
     time_par = request.args.get('time')
     name_par = request.args.get('name')
     srv_par = request.args.get('service')
+    lineid_par = request.args.get('lineid')
     #age = int(request.args.get('age'))
     #timestr = convert_date_time(time_par)
     #text_msg ="日期:" + date_par + "\n"+ \
@@ -42,7 +43,7 @@ def get_params():
                "時間:" + time_par + "\n"    
         
     try:
-        line_bot_api.push_message(user_id,TextSendMessage(text=text_msg))
+        line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
         #line_bot_api.reply_message()
         return text_msg
     except LineBotApiError as e:
