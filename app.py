@@ -21,7 +21,7 @@ config.read('config.ini')
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 user_id = config.get('line-bot', 'user_id')
-salon_id = 000 #default
+salon_id = '000' #default
 
 @app.route("/",methods=["GET"])
 def get_params():
@@ -53,7 +53,7 @@ def get_params():
 #@app.route("/", methods=["POST"])
 def callback():
     salon_id = request.args.get('salonId') #WebHook default params
-    print('salonID:%d'%salon_id)
+    print('salonID:%s'%salon_id)
     if request.method == "GET":
         return "Welcome to Linebot iSalon App"
     if request.method == "POST":
@@ -86,7 +86,7 @@ def handle_message(event):
         #print(user_display_str)
         #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
         url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
-                    + 'SalonID=' + str(salon_id)
+                    + 'SalonID=' + salon_id
         print(url_string)
         UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
                         
