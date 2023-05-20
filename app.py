@@ -59,12 +59,14 @@ def get_params():
             elif content['contents'][0]['text'] == '時間:':    
                 content['contents'][0]['text'] = content['contents'][0]['text']+time_par 
 
-    json_data = json.dumps(json_text,indent=2)    
+    #json_data = json.dumps(json_text,indent=2)    
+    json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
     f.close()
+    print(json_data.decode())
     #execute push message   
     try:
         #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
-        line_bot_api.push_message(lineid_par,FlexSendMessage('booking',json_data))
+        line_bot_api.push_message(lineid_par,FlexSendMessage('booking',json_data.decode()))
         #line_bot_api.reply_message()
         return text_msg
     except LineBotApiError as e:

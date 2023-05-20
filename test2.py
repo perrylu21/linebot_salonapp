@@ -42,14 +42,16 @@ if __name__ == '__main__':
             elif content['contents'][0]['text'] == '服務:':    
                 content['contents'][0]['text'] = content['contents'][0]['text']+service_str 
             elif content['contents'][0]['text'] == '日期:':    
-                content['contents'][0]['text'] = content['contents'][0]['text']+time_str 
-            elif content['contents'][0]['text'] == '時間:':    
                 content['contents'][0]['text'] = content['contents'][0]['text']+date_str 
+            elif content['contents'][0]['text'] == '時間:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+time_str 
 
-    json_data = json.dumps(json_text,indent=2)
-    
-    with open("output.json", "w") as file:
-        file.write(json_data)
+    json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
+    print(json_data.decode())
+    #with open("output.json", "w",encoding='utf8') as file:
+        #file.write(json_data)
+    #    json.dump("output.json", file, ensure_ascii=False)
+        
 
     # Closing file
     f.close()
