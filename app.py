@@ -41,9 +41,30 @@ def get_params():
                "服務:" + srv_par + "\n" + \
                "日期:" + date_par + "\n" + \
                "時間:" + time_par + "\n"    
-    print(text_msg)    
+    print(text_msg) 
+    
+    #load booking json template and update booking info
+    f = open('booking.json')
+    # returns JSON object as a dictionary
+    json_text = json.load(f)
+    for content in json_text['body']['contents']:
+        if content['type'] == 'box':
+            print(content['contents'][0]['text'])
+            if content['contents'][0]['text'] == '姓名:':
+                content['contents'][0]['text'] = content['contents'][0]['text']+name_par
+            elif content['contents'][0]['text'] == '服務:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+srv_par 
+            elif content['contents'][0]['text'] == '日期:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+date_par 
+            elif content['contents'][0]['text'] == '時間:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+time_par 
+
+    json_data = json.dumps(json_text,indent=2)    
+    f.close()
+    #execute push message   
     try:
-        line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
+        #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
+        line_bot_api.push_message(lineid_par,FlexSendMessage('booking',json_data))
         #line_bot_api.reply_message()
         return text_msg
     except LineBotApiError as e:
