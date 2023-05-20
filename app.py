@@ -41,7 +41,7 @@ def get_params():
                "服務:" + srv_par + "\n" + \
                "日期:" + date_par + "\n" + \
                "時間:" + time_par + "\n"    
-        
+    print(text_msg)    
     try:
         line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
         #line_bot_api.reply_message()
