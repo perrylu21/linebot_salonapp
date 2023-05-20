@@ -51,7 +51,8 @@ def get_params():
 @app.route("/", methods=["GET", "POST"])
 #@app.route("/", methods=["POST"])
 def callback():
-
+    salonid_par = request.args.get('salonId')
+    print('salonID:%s'%salonid_par)
     if request.method == "GET":
         return "Welcome to Linebot iSalon App"
     if request.method == "POST":
@@ -84,7 +85,6 @@ def handle_message(event):
     print(user_display_str)
     #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
     url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
-                 + 'UserDisplayName='+ user_display_str + '&'\
                  + 'SalonID=' + '420'
     print(url_string)
     UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
@@ -94,7 +94,9 @@ def handle_message(event):
     line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
     #pass user id to iSalon web app
     #params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
-    user_data = {'UserLineId':user_profile.user_id,'UserDisplayName': user_profile.display_name,'SalonID':420}
+    #user_data = {'UserLineId':user_profile.user_id,'UserDisplayName': user_profile.display_name,'SalonID':420}
+    user_data = {'UserLineId':user_profile.user_id,'SalonID':420}
+
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
     #    data=json.dumps(user_data),headers=headers)
