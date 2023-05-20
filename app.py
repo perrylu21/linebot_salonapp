@@ -76,44 +76,41 @@ def handle_message(event):
     message_type = event.message.type
     reply_token = event.reply_token    
     user_id = event.source.user_id 
-    #try:
-    user_profile = line_bot_api.get_profile(user_id)
-    print('Profile:\n')
-    print(user_profile)
-    #User Display name may contain white space, need to trim space
-    user_display_str = user_profile.display_name 
-    user_display_str = user_display_str.replace(" ","")
-    print(user_display_str)
-    #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
-    url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
-                 + 'SalonID=' + str(salon_id)
-    print(url_string)
-    UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
-                     
-    #display flex message menu with linebot
-    FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
-    line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
-    #pass user id to iSalon web app
-    #params = {'UserDisplayName': user_profile.displayName, 'UserLineId':user_profile.userId, }
-    #user_data = {'UserLineId':user_profile.user_id,'UserDisplayName': user_profile.display_name,'SalonID':420}
-    user_data = {'UserLineId':user_profile.user_id,'SalonID':salon_id}
+    try:
+        user_profile = line_bot_api.get_profile(user_id)
+        print('Profile:\n')
+        print(user_profile)
+        #User Display name may contain white space, need to trim space
+        #user_display_str = user_profile.display_name 
+        #user_display_str = user_display_str.replace(" ","")
+        #print(user_display_str)
+        #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
+        url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
+                    + 'SalonID=' + str(salon_id)
+        print(url_string)
+        UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
+                        
+        #display flex message menu with linebot
+        FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
+        line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
+        #pass user id to iSalon web app
+        #user_data = {'UserLineId':user_profile.user_id,'UserDisplayName': user_profile.display_name,'SalonID':420}
+        user_data = {'UserLineId':user_profile.user_id,'SalonID':salon_id}
 
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
-    #    data=json.dumps(user_data),headers=headers)
-    response = requests.get('https://www.ez-nail.com/eznail_mobile_hnp/',
-        params=user_data,headers=headers)
-    
-    print(response.status_code)
-    print(user_data)
-    print(response.url)
-    #print(response.text)
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
+        #    data=json.dumps(user_data),headers=headers)
+        response = requests.get('https://www.ez-nail.com/eznail_mobile_hnp/',
+            params=user_data,headers=headers)
         
-    #except:
-    #    print('Fail to reply message.')
-    # Send To Line
-    #reply_msg = TextSendMessage(text=f"{get_message}")
-    #line_bot_api.reply_message(event.reply_token, reply_msg)
+        print(response.status_code)
+        print(user_data)
+        print(response.url)
+        #print(response.text)
+        
+    except:
+        print('Fail to reply message.')
+
     
 def UpdateFlexMessageURL(JsonInFile, JsonOutFile, url_str):
     f = open(JsonInFile)
