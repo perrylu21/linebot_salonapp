@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 import json
+import sys
 
 def extract_values(obj, key):
     """Pull all values of specified key from nested JSON."""
@@ -48,10 +49,10 @@ if __name__ == '__main__':
 
     json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
     print(json_data.decode())
-    #with open("output.json", "w",encoding='utf8') as file:
-        #file.write(json_data)
-    #    json.dump("output.json", file, ensure_ascii=False)
-        
+
+    with open('output.json', 'w', encoding='utf8') as json_file:
+        json.dump(json_text,json_file,ensure_ascii=False)
+      
 
     # Closing file
     f.close()

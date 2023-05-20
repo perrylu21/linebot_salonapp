@@ -66,7 +66,7 @@ def get_params():
     #execute push message   
     try:
         #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
-        line_bot_api.push_message(lineid_par,FlexSendMessage('booking',json_data.decode()))
+        line_bot_api.push_message(lineid_par,FlexSendMessage('booking',json_data))
         #line_bot_api.reply_message()
         return text_msg
     except LineBotApiError as e:
