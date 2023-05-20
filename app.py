@@ -61,14 +61,18 @@ def get_params():
 
     #json_data = json.dumps(json_text,indent=2)    
     json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
+    print(json_data.decode())
     f.close()
-    print(json_data)
+    with open('booking_new.json', 'w', encoding='utf8') as json_file:
+        json.dump(json_text,json_file,ensure_ascii=False)
+    
     #execute push message   
     try:
         #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
-        line_bot_api.push_message(lineid_par,FlexSendMessage(alt_text='booking',contents=json_data))
+        FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
+        line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage))
         
-        #FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
+        
 
 
         return text_msg
