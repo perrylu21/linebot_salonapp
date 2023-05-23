@@ -26,10 +26,11 @@ user_id = config.get('line-bot', 'user_id')
 @app.route("/",methods=["GET"])
 def get_params():
     print('get_params...')
-    date_par = request.args.get('date')
-    time_par = request.args.get('time')
+    startdt_par = request.args.get('start')
+    enddt_par = request.args.get('end')
     name_par = request.args.get('name')
     srv_par = request.args.get('service')
+    memo_par = request.args.get('memo')
     lineid_par = request.args.get('lineid')
     #age = int(request.args.get('age'))
     #timestr = convert_date_time(time_par)
@@ -39,8 +40,9 @@ def get_params():
     #          "服務:" + srv_par    
     text_msg = "姓名:" + name_par + "\n" + \
                "服務:" + srv_par + "\n" + \
-               "日期:" + date_par + "\n" + \
-               "時間:" + time_par + "\n"    
+               "開始:" + startdt_par + "\n" + \
+               "結束:" + enddt_par + "\n" + \
+               "備註:" + memo_par + "\n"        
     print(text_msg) 
     
     #load booking json template and update booking info
@@ -54,10 +56,12 @@ def get_params():
                 content['contents'][0]['text'] = content['contents'][0]['text']+name_par
             elif content['contents'][0]['text'] == '服務:':    
                 content['contents'][0]['text'] = content['contents'][0]['text']+srv_par 
-            elif content['contents'][0]['text'] == '日期:':    
-                content['contents'][0]['text'] = content['contents'][0]['text']+date_par 
-            elif content['contents'][0]['text'] == '時間:':    
-                content['contents'][0]['text'] = content['contents'][0]['text']+time_par 
+            elif content['contents'][0]['text'] == '開始:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+startdt_par 
+            elif content['contents'][0]['text'] == '結束:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+enddt_par 
+            elif content['contents'][0]['text'] == '備註:':    
+                content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
 
     #json_data = json.dumps(json_text,indent=2)    
     json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')

@@ -44,7 +44,7 @@
           "contents": [
             {
               "type": "text",
-              "text": "日期:"
+              "text": "開始:"
             }
           ]
         },    
@@ -54,10 +54,20 @@
           "contents": [
             {
               "type": "text",
-              "text": "時間:"
+              "text": "結束:"
             }
           ]
-        }      
+        },  
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "text",
+              "text": "備註:"
+            }
+          ]
+        }                 
       ]
     }
 
