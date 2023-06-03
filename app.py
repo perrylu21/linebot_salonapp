@@ -106,9 +106,9 @@ def callback():
             #get_message += event.message.text
             message_type = json_data['events'][0]['message']['type'] 
             #message_type = event.message.type
-            reply_token = json_data['events'][0]['message']['replyToken'] 
+            reply_token = json_data['events'][0]['replyToken']
             #reply_token = event.reply_token    
-            user_id = json_data['events'][0]['source']['user_id']
+            user_id = json_data['events'][0]['source']['userId']
             #user_id = event.source.user_id 
 
             user_profile = line_bot_api.get_profile(user_id)

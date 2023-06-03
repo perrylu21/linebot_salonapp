@@ -4,6 +4,10 @@ import json
 import sys
 import csv
 
+def test_event_body():
+    json_data = {'destination': 'U7443c05aafb93ae7d746a2f87c7d396a', 'events': [{'type': 'message', 'message': {'type': 'text', 'id': '457964905652813895', 'text': '線上預約'}, 'webhookEventId': '01H20QTT83BSDC4QDAJTR4QZH9', 'deliveryContext': {'isRedelivery': False}, 'timestamp': 1685799659368, 'source': {'type': 'user', 'userId': 'U993e4bed50c6b80ac697b078fda84a01'}, 'replyToken': '8b4c16aa68ce4999ba24d929fc27d7d7', 'mode': 'active'}]}
+    print(json_data['events'][0]['replyToken'])
+    print(json_data['events'][0]['source']['userId'])
 def test_salon_info(salon_id):
     channel_token_str = 'none'
     channel_secret_str = 'none'
@@ -69,9 +73,9 @@ def extract_values(obj, key):
     return results
 
 if __name__ == '__main__':
-    token, secret = test_salon_info('420')
-    print('\ntoken = %s, \nsecret = %s'%(token,secret))
-    
+    #token, secret = test_salon_info('420')
+    #print('\ntoken = %s, \nsecret = %s'%(token,secret))
+    test_event_body()
 
 
 
