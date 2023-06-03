@@ -5,7 +5,7 @@ from flask import Flask, abort, request, jsonify
 import json
 # https://github.com/line/line-bot-sdk-python
 from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
+from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import *
 import csv
 import configparser
@@ -139,6 +139,7 @@ def callback():
 
         try:
             #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
+            print('lineid_par:%s'%lineid_par)
             FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
             line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
 
