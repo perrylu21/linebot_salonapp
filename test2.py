@@ -2,27 +2,19 @@ import os
 from datetime import datetime
 import json
 import sys
+import csv
 
-def extract_values(obj, key):
-    """Pull all values of specified key from nested JSON."""
-    arr = []
-
-    def extract(obj, arr, key):
-        """Recursively search for values of key in JSON tree."""
-        if isinstance(obj, dict):
-            for k, v in obj.items():
-                if isinstance(v, (dict, list)):
-                    extract(v, arr, key)
-                elif k == key:
-                    arr.append(v)
-        elif isinstance(obj, list):
-            for item in obj:
-                extract(item, arr, key)
-        return arr
-
-    results = extract(obj, arr, key)
-    return results
-if __name__ == '__main__':
+def test_salon_info(salon_id):
+    channel_token_str = 'none'
+    channel_secret_str = 'none'
+    with open('salon_config.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['salonid'] == salon_id:
+                #print(row['salonid'], row['channel_access_token'],row['channel_access_secret'],row['salon_name'])
+                return row['channel_access_token'],row['channel_access_secret']
+        return channel_token_str, channel_secret_str   
+def test_booking_info():
     f = open('booking.json')
     # returns JSON object as 
     # a dictionary
@@ -55,7 +47,31 @@ if __name__ == '__main__':
       
 
     # Closing file
-    f.close()
+    f.close()    
+def extract_values(obj, key):
+    """Pull all values of specified key from nested JSON."""
+    arr = []
+
+    def extract(obj, arr, key):
+        """Recursively search for values of key in JSON tree."""
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if isinstance(v, (dict, list)):
+                    extract(v, arr, key)
+                elif k == key:
+                    arr.append(v)
+        elif isinstance(obj, list):
+            for item in obj:
+                extract(item, arr, key)
+        return arr
+
+    results = extract(obj, arr, key)
+    return results
+
+if __name__ == '__main__':
+    token, secret = test_salon_info('420')
+    print('\ntoken = %s, \nsecret = %s'%(token,secret))
+    
 
 
 
