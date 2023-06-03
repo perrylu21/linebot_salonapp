@@ -68,9 +68,9 @@ def get_params():
         json.dump(json_text,json_file,ensure_ascii=False)
     
     #execute push message   
-    token, secret = get_salon_info(salon_id_par)
-    print('\nToken: %s'%token)
-    line_bot_api = LineBotApi(token)
+    #token, secret = get_salon_info(salon_id_par)
+    #print('\nToken: %s'%token)
+    #line_bot_api = LineBotApi(token)
     try:
         #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
         FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
