@@ -13,7 +13,7 @@
       "contents": [
         {
           "type": "text",
-          "text": "iSalon Pos Linebot",
+          "text": "iSalon愛沙龍 預約App",
           "size": "xl",
           "weight": "bold",
           "color": "#0099ff"
@@ -24,7 +24,7 @@
           "contents": [
             {
               "type": "text",
-              "text": "Salon Pos 第一品牌"
+              "text": "Line@預約方便又快速"
             }
           ]
         },
