@@ -156,8 +156,9 @@ def callback():
             handler.handle(body, signature)
             print('json_data:\n')
             print(json_data)
-            get_message = "Thanks for using iSalonbot, "
-            get_message += json_data['events'][0]['message']['text'] 
+            title_message = "Thanks for using iSalonbot, "
+            message_text = json_data['events'][0]['message']['text'] 
+            print('message text:%s'%message_text)
             #get_message += event.message.text
             message_type = json_data['events'][0]['message']['type'] 
             #message_type = event.message.type
@@ -189,9 +190,9 @@ def callback():
             response = requests.get('https://www.ez-nail.com/eznail_mobile_hnp/',
                 params=user_data,headers=headers)
         
-            print(response.status_code)
-            print(user_data)
-            print(response.url)
+            print('response_status:%d'%response.status_code)
+            #print(user_data)
+            #print(response.url)
             #print(response.text)            
       
         except InvalidSignatureError:
