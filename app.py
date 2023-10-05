@@ -154,8 +154,8 @@ def callback():
         json_data = json.loads(body)
         try:
             handler.handle(body, signature)
-            print('json_data:\n')
-            print(json_data)
+            #print('json_data:\n')
+            #print(json_data)
             title_message = "Thanks for using iSalonbot, "
             message_text = json_data['events'][0]['message']['text'] 
             print('message text:%s'%message_text)
@@ -201,47 +201,7 @@ def callback():
         return "OK"
 
 
-# @handler.add(MessageEvent, message=TextMessage)
-# def handle_message(event):
-#     get_message = "Thanks for using iSalonbot, "
-#     get_message += event.message.text
-#     message_type = event.message.type
-#     reply_token = event.reply_token    
-#     user_id = event.source.user_id 
-#     try:
-#         user_profile = line_bot_api.get_profile(user_id)
-#         print('Profile:')
-#         print(user_profile)
-#         #User Display name may contain white space, need to trim space
-#         #user_display_str = user_profile.display_name 
-#         #user_display_str = user_display_str.replace(" ","")
-#         #print(user_display_str)
-#         salon_id = config.get('line-bot', 'salon_id')
-#         #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
-#         url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
-#                     + 'SalonID=' + salon_id
-#         print(url_string)
-#         UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
-                        
-#         #display flex message menu with linebot
-#         FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
-#         line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
-#         #pass user id to iSalon web app
-#         user_data = {'UserLineId':user_profile.user_id,'SalonID':salon_id}
 
-#         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-#         #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
-#         #    data=json.dumps(user_data),headers=headers)
-#         response = requests.get('https://www.ez-nail.com/eznail_mobile_hnp/',
-#             params=user_data,headers=headers)
-        
-#         print(response.status_code)
-#         print(user_data)
-#         print(response.url)
-#         #print(response.text)
-        
-#     except:
-#         print('Fail to reply message.')
 
     
 def UpdateFlexMessageURL(JsonInFile, JsonOutFile, url_str):
