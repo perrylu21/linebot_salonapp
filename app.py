@@ -13,74 +13,6 @@ import numpy as np
 
 app = Flask(__name__)
 
-#line_bot_api = LineBotApi(os.environ.get("CHANNEL_ACCESS_TOKEN"))
-#handler = WebhookHandler(os.environ.get("CHANNEL_SECRET"))
-#user_id = "U993e4bed50c6b80ac697b078fda84a01"
-#config = configparser.ConfigParser()
-#config.read('config.ini')
-
-#line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
-#handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
-#user_id = config.get('line-bot', 'user_id')
-
-# @app.route("/",methods=["GET"])
-# def get_params():
-#     print('get_params...')
-#     name_par = request.args.get('name')
-#     srv_par = request.args.get('service')
-#     startdt_par = request.args.get('start')
-#     enddt_par = request.args.get('end')    
-#     memo_par = request.args.get('memo')
-#     lineid_par = request.args.get('lineid')
-#     salon_id_par = request.args.get('salonId') #WebHook default params
-#     print('salonID:%s'%salon_id_par)
- 
-#     text_msg = "姓名:" + name_par + "\n" + \
-#                "服務:" + srv_par + "\n" + \
-#                "開始:" + startdt_par + "\n" + \
-#                "結束:" + enddt_par + "\n" + \
-#                "備註:" + memo_par + "\n"        
-#     print(text_msg) 
-    
-#     #load booking json template and update booking info
-#     f = open('booking.json')
-#     # returns JSON object as a dictionary
-#     json_text = json.load(f)
-#     for content in json_text['body']['contents']:
-#         if content['type'] == 'box':
-#             print(content['contents'][0]['text'])
-#             if content['contents'][0]['text'] == '姓名:':
-#                 content['contents'][0]['text'] = content['contents'][0]['text']+name_par
-#             elif content['contents'][0]['text'] == '服務:':    
-#                 content['contents'][0]['text'] = content['contents'][0]['text']+srv_par 
-#             elif content['contents'][0]['text'] == '開始:':    
-#                 content['contents'][0]['text'] = content['contents'][0]['text']+startdt_par 
-#             elif content['contents'][0]['text'] == '結束:':    
-#                 content['contents'][0]['text'] = content['contents'][0]['text']+enddt_par 
-#             elif content['contents'][0]['text'] == '備註:':    
-#                 content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
-
-#     #json_data = json.dumps(json_text,indent=2)    
-#     json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
-#     print(json_data.decode())
-#     f.close()
-#     with open('booking_new.json', 'w', encoding='utf8') as json_file:
-#         json.dump(json_text,json_file,ensure_ascii=False)
-    
-#     #execute push message   
-#     #token, secret = get_salon_info(salon_id_par)
-#     #print('\nToken: %s'%token)
-#     #line_bot_api = LineBotApi(token)
-#     try:
-#         #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
-#         FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
-#         line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
-
-#         return text_msg
-#     except LineBotApiError as e:
-#         print("LineBot Error:{0}".format(e.message))
-#     return jsonify(message=text_msg)
-
 @app.route("/", methods=["GET", "POST"])
 #@app.route("/", methods=["POST"])
 def callback():
@@ -166,14 +98,6 @@ def callback():
             print('Profile:')
             print(user_profile)            
             if message_text == '線上預約':
-                # message_type = json_data['events'][0]['message']['type'] 
-                # reply_token = json_data['events'][0]['replyToken']
-                # user_id = json_data['events'][0]['source']['userId']
-
-                # user_profile = line_bot_api.get_profile(user_id)
-                # print('Profile:')
-                # print(user_profile)
-
                 #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
                 url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
                         + 'SalonID=' + salon_id
@@ -196,13 +120,6 @@ def callback():
                 #print(response.url)
                 #print(response.text)     
             elif message_text == '作品集':
-                # message_type = json_data['events'][0]['message']['type'] 
-                # reply_token = json_data['events'][0]['replyToken']
-                # user_id = json_data['events'][0]['source']['userId']
-
-                # user_profile = line_bot_api.get_profile(user_id)
-                # print('Profile:')
-                # print(user_profile)
                 url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/artworks.aspx'+'?UserLineId='+user_profile.user_id+'&'\
                         + 'SalonID=' + salon_id
                 print(url_string)
