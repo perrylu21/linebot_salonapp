@@ -159,16 +159,21 @@ def callback():
             title_message = "Thanks for using iSalonbot, "
             message_text = json_data['events'][0]['message']['text'] 
             print('message text:%s'%message_text)
+            message_type = json_data['events'][0]['message']['type'] 
+            reply_token = json_data['events'][0]['replyToken']
+            user_id = json_data['events'][0]['source']['userId']
+            user_profile = line_bot_api.get_profile(user_id)
+            print('Profile:')
+            print(user_profile)            
             if message_text == '線上預約':
-                message_type = json_data['events'][0]['message']['type'] 
-                reply_token = json_data['events'][0]['replyToken']
-                user_id = json_data['events'][0]['source']['userId']
+                # message_type = json_data['events'][0]['message']['type'] 
+                # reply_token = json_data['events'][0]['replyToken']
+                # user_id = json_data['events'][0]['source']['userId']
 
-                user_profile = line_bot_api.get_profile(user_id)
-                print('Profile:')
-                print(user_profile)
+                # user_profile = line_bot_api.get_profile(user_id)
+                # print('Profile:')
+                # print(user_profile)
 
-                #salon_id = config.get('line-bot', 'salon_id')
                 #"https://www.ez-nail.com/eznail_mobile_hnp/?UserLineId=U5628cbc5abb074e1eb7995aecc401c17&UserDisplayName=Jacky+Chen&SalonID=420"
                 url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
                         + 'SalonID=' + salon_id
@@ -190,6 +195,32 @@ def callback():
                 print('response_status:%d'%response.status_code)
                 #print(response.url)
                 #print(response.text)     
+            elif message_text == '作品集':
+                # message_type = json_data['events'][0]['message']['type'] 
+                # reply_token = json_data['events'][0]['replyToken']
+                # user_id = json_data['events'][0]['source']['userId']
+
+                # user_profile = line_bot_api.get_profile(user_id)
+                # print('Profile:')
+                # print(user_profile)
+                url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/artworks.aspx'+'?UserLineId='+user_profile.user_id+'&'\
+                        + 'SalonID=' + salon_id
+                print(url_string)
+                UpdateFlexMessageURL('artworks_org.json', 'artworks_new.json', url_string)
+                            
+                #display flex message menu with linebot
+                FlexMessage = json.load(open('artworks_new.json','r',encoding='utf-8'))
+                line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
+                #pass user id to iSalon web app
+                user_data = {'UserLineId':user_profile.user_id,'SalonID':salon_id}
+
+                headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+                #response = requests.post('https://www.ez-nail.com/eznail_mobile_hnp/',
+                #    data=json.dumps(user_data),headers=headers)
+                response = requests.get('https://www.ez-nail.com/eznail_mobile_hnp/artworks.aspx',
+                    params=user_data,headers=headers)
+            
+                print('response_status:%d'%response.status_code)                                
             else:
                 print('Unsuppoted message text.')    
        

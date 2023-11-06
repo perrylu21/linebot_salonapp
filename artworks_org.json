@@ -1,0 +1,47 @@
+{
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://www.ez-nail.com/eznail_mobile_hnp/salon-icon1.png",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "iSalon愛沙龍 預約App",
+          "size": "xl",
+          "weight": "bold",
+          "color": "#0099ff"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Line@線上作品給你看！"
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "button",
+          "action": {
+            "type": "uri",
+            "label": "iSalon 作品集(請按我)",
+            "uri": "https://www.ez-nail.com/eznail_mobile_hnp/artworks.aspx?salonid=420"
+          }
+        }
+      ]
+    }
+  }
