@@ -1,0 +1,44 @@
+{
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://www.ez-nail.com/eznail_mobile_hnp/salon-icon1.png",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "好康訊息",
+          "size": "xl",
+          "weight": "bold",
+          "color": "#0099ff"
+        },
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "text",
+              "text": "姓名:"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "text",
+              "text": "好康訊息:"
+            }
+          ]
+        }                 
+      ]
+    }
+
+  }

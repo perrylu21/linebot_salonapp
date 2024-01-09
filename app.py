@@ -35,50 +35,90 @@ def callback():
         enddt_par = request.args.get('end')    
         memo_par = request.args.get('memo')
         lineid_par = request.args.get('lineid')
- 
-        text_msg = "姓名:" + name_par + "\n" + \
-                   "服務:" + srv_par + "\n" + \
-                   "開始:" + startdt_par + "\n" + \
-                   "結束:" + enddt_par + "\n" + \
-                   "備註:" + memo_par + "\n"        
-        print(text_msg) 
-    
-        #load booking json template and update booking info
-        f = open('booking.json')
-        # returns JSON object as a dictionary
-        json_text = json.load(f)
-        for content in json_text['body']['contents']:
-            if content['type'] == 'box':
-                print(content['contents'][0]['text'])
-                if content['contents'][0]['text'] == '姓名:':
-                    content['contents'][0]['text'] = content['contents'][0]['text']+name_par
-                elif content['contents'][0]['text'] == '服務:':    
-                    content['contents'][0]['text'] = content['contents'][0]['text']+srv_par 
-                elif content['contents'][0]['text'] == '開始:':    
-                    content['contents'][0]['text'] = content['contents'][0]['text']+startdt_par 
-                elif content['contents'][0]['text'] == '結束:':    
-                    content['contents'][0]['text'] = content['contents'][0]['text']+enddt_par 
-                elif content['contents'][0]['text'] == '備註:':    
-                    content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
-        #create booking Flex Message 
-        json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
-        print(json_data.decode())
-        f.close()
-        with open('booking_new.json', 'w', encoding='utf8') as json_file:
-            json.dump(json_text,json_file,ensure_ascii=False)
-    
+        
+        message_par = request.args.get('message')
+        imageurl_par = request.args.get('imageurl')
+        
+        if message_par == None: #booking flex message
+            text_msg = "姓名:" + name_par + "\n" + \
+                    "服務:" + srv_par + "\n" + \
+                    "開始:" + startdt_par + "\n" + \
+                    "結束:" + enddt_par + "\n" + \
+                    "備註:" + memo_par + "\n"     
+                        
+            print(text_msg) 
+        
+            #load booking json template and update booking info
+            f = open('booking.json')
+            # returns JSON object as a dictionary
+            json_text = json.load(f)
+            for content in json_text['body']['contents']:
+                if content['type'] == 'box':
+                    print(content['contents'][0]['text'])
+                    if content['contents'][0]['text'] == '姓名:':
+                        content['contents'][0]['text'] = content['contents'][0]['text']+name_par
+                    elif content['contents'][0]['text'] == '服務:':    
+                        content['contents'][0]['text'] = content['contents'][0]['text']+srv_par 
+                    elif content['contents'][0]['text'] == '開始:':    
+                        content['contents'][0]['text'] = content['contents'][0]['text']+startdt_par 
+                    elif content['contents'][0]['text'] == '結束:':    
+                        content['contents'][0]['text'] = content['contents'][0]['text']+enddt_par 
+                    elif content['contents'][0]['text'] == '備註:':    
+                        content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
+            #create booking Flex Message 
+            json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
+            print(json_data.decode())
+            f.close()
+            with open('booking_new.json', 'w', encoding='utf8') as json_file:
+                json.dump(json_text,json_file,ensure_ascii=False)
+        else: #promotion message
+            text_msg = "姓名:" + name_par + "\n" + \
+                    "優惠:" + srv_par + "\n" + \
+                    "URL:" + imageurl_par + "\n"     
+                        
+            print(text_msg) 
+        
+            #load booking json template and update booking info
+            f = open('message.json')
+            # returns JSON object as a dictionary
+            json_text = json.load(f)
+            
+            for content in json_text['hero']:
+                if content['type'] == 'image':
+                    content['url'] = imageurl_par
+                    print(content['url'])
+                    
+            for content in json_text['body']['contents']:
+                if content['type'] == 'box':
+                    print(content['contents'][0]['text'])
+                    if content['contents'][0]['text'] == '姓名:':
+                        content['contents'][0]['text'] = content['contents'][0]['text']+name_par
+                    elif content['contents'][0]['text'] == '好康訊息:':    
+                        content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
+            #create booking Flex Message 
+            json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
+            print(json_data.decode())
+            f.close()
+            with open('message_new.json', 'w', encoding='utf8') as json_file:
+                json.dump(json_text,json_file,ensure_ascii=False)            
+            
         #execute push message   
 
         try:
             #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
             print('lineid_par:%s'%lineid_par)
-            FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
-            line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
-
+            if message_par == None: #booking flex message
+                FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
+                line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
+            else:
+                FlexMessage = json.load(open('message_new.json','r',encoding='utf-8'))
+                line_bot_api.push_message(lineid_par,FlexSendMessage('message',FlexMessage))  
+                               
             return text_msg
         except LineBotApiError as e:
             print("LineBot Error:{0}".format(e.message))
-        return jsonify(message=text_msg)        
+        return jsonify(message=text_msg)   
+         
     if request.method == "POST":
         print('Post Request...')
         signature = request.headers["X-Line-Signature"]
