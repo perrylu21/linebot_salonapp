@@ -84,7 +84,8 @@ def callback():
             json_text = json.load(f)
             
             for content in json_text['hero']:
-                if content['type'] == 'image':
+                print(content)
+                if content[0] == 'image':
                     content['url'] = imageurl_par
                     print(content['url'])
                     

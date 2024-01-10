@@ -8,7 +8,7 @@ https://linebot-salonapp.herokuapp.com/?name=陸朝霈&service=小花&start=2023
 https://linebot-salonapp.herokuapp.com/?name=%E9%99%B3%E9%8D%B5%E5%BF%97&service=%E8%B6%B3%E4%BF%9D&date=2023-10-11&time=11:00:00
 
 promition web service:
-https://linebot-salonapp.herokuapp.com/?name=陸朝霈&message=2024年一月好康&lineid=U993e4bed50c6b80ac697b078fda84a01&imageurl=https://www.ez-nail.com/eznail_mobile_hnp/salon-icon1.png
+https://linebot-salonapp.herokuapp.com/?name=陸朝霈&message=2024年一月好康&lineid=U993e4bed50c6b80ac697b078fda84a01&imageurl=https://www.ez-nail.com/eznail_mobile_hnp/salon-icon1.png&salonId=420
 
 
 Jacky's line id
