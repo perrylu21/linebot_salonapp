@@ -73,7 +73,7 @@ def callback():
                 json.dump(json_text,json_file,ensure_ascii=False)
         else: #promotion message
             text_msg = "姓名:" + name_par + "\n" + \
-                    "優惠:" + srv_par + "\n" + \
+                    "優惠:" + message_par + "\n" + \
                     "URL:" + imageurl_par + "\n"     
                         
             print(text_msg) 
