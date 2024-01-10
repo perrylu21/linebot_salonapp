@@ -84,10 +84,10 @@ def callback():
             json_text = json.load(f)
             
             for content in json_text['hero']:
-                print(content)
-                if content[0] == 'image':
-                    content['url'] = imageurl_par
-                    print(content['url'])
+                print(content[0]['type'])
+                if content[0]['type'] == 'image':
+                    content[0]['url'] = imageurl_par
+                    print(content[0]['url'])
                     
             for content in json_text['body']['contents']:
                 if content['type'] == 'box':
@@ -95,7 +95,7 @@ def callback():
                     if content['contents'][0]['text'] == '姓名:':
                         content['contents'][0]['text'] = content['contents'][0]['text']+name_par
                     elif content['contents'][0]['text'] == '好康訊息:':    
-                        content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
+                        content['contents'][0]['text'] = content['contents'][0]['text']+message_par 
             #create booking Flex Message 
             json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
             print(json_data.decode())
