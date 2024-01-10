@@ -83,11 +83,15 @@ def callback():
             # returns JSON object as a dictionary
             json_text = json.load(f)
             
-            for content in json_text['hero']:
-                print(content[0]['type'])
-                if content[0]['type'] == 'image':
-                    content[0]['url'] = imageurl_par
-                    print(content[0]['url'])
+            print(json_text['hero']['type'])
+            if json_text['hero']['type'] == 'image':
+                json_text['hero']['url'] = imageurl_par
+                print(json_text['hero']['url'])
+            # for content in json_text['hero']:
+            #     print(content[0])
+            #     if content[0]['type'] == 'image':
+            #         content[0]['url'] = imageurl_par
+            #         print(content[0]['url'])
                     
             for content in json_text['body']['contents']:
                 if content['type'] == 'box':
