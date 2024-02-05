@@ -112,6 +112,7 @@ def callback():
         try:
             #line_bot_api.push_message(lineid_par,TextSendMessage(text=text_msg))
             print('lineid_par:%s'%lineid_par)
+            print('message_par:%s'%message_par)
             if message_par == None: #booking flex message
                 FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
                 line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
