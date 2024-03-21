@@ -5,6 +5,8 @@ https://linebot-salonapp.herokuapp.com/?name=陳鍵志(設計師:Mandy)&service=
 booking web service:
 https://linebot-salonapp.herokuapp.com/?name=陸朝霈&service=小花&start=2023-10-12+11:00&end=2023-10-12+13:00&memo=足保&lineid=U993e4bed50c6b80ac697b078fda84a01&salonId=420
 
+https://linebot-salonapp.herokuapp.com/?name=陸朝霈&service=小花&start=2023-10-12+11:00&end=2023-10-12+13:00&memo=足保&imageurl=https://www.ez-nail.com/eznail_mobile_hnp/salon-icon1.png&lineid=U993e4bed50c6b80ac697b078fda84a01&salonId=420
+
 https://linebot-salonapp.herokuapp.com/?name=%E9%99%B3%E9%8D%B5%E5%BF%97&service=%E8%B6%B3%E4%BF%9D&date=2023-10-11&time=11:00:00
 
 promition web service:
