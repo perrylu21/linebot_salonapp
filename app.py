@@ -58,7 +58,7 @@ def callback():
             if imageurl_par != None:
                 if json_text['hero']['type'] == 'image':
                     json_text['hero']['url'] = imageurl_par
-                    print('imageurl={}').format(json_text['hero']['url'])                 
+                    print('imageurl={}'.format(json_text['hero']['url']))
             for content in json_text['body']['contents']:
                 if content['type'] == 'box':
                     print(content['contents'][0]['text'])
@@ -93,7 +93,7 @@ def callback():
             print(json_text['hero']['type'])
             if json_text['hero']['type'] == 'image':
                 json_text['hero']['url'] = imageurl_par
-                print('imageurl={}').format(json_text['hero']['url'])
+                print('imageurl={}'.format(json_text['hero']['url']))
             # for content in json_text['hero']:
             #     print(content[0])
             #     if content[0]['type'] == 'image':
