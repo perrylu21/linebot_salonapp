@@ -24,7 +24,8 @@
           "contents": [
             {
               "type": "text",
-              "text": "姓名:"
+              "text": "姓名:",
+              "size": "md"
             }
           ]
         },
@@ -34,7 +35,8 @@
           "contents": [
             {
               "type": "text",
-              "text": "好康訊息:"
+              "text": "好康訊息:",
+              "size": "md"
             }
           ]
         }                 

@@ -74,7 +74,7 @@ def callback():
                         content['contents'][0]['text'] = content['contents'][0]['text']+memo_par 
             #create booking Flex Message 
             json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
-            print(json_data.decode())
+            #print(json_data.decode())
             f.close()
             with open('booking_new.json', 'w', encoding='utf8') as json_file:
                 json.dump(json_text,json_file,ensure_ascii=False)
@@ -109,7 +109,7 @@ def callback():
                         content['contents'][0]['text'] = content['contents'][0]['text']+message_par 
             #create booking Flex Message 
             json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
-            print(json_data.decode())
+            #print(json_data.decode())
             f.close()
             with open('message_new.json', 'w', encoding='utf8') as json_file:
                 json.dump(json_text,json_file,ensure_ascii=False)            
