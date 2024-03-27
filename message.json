@@ -25,7 +25,8 @@
             {
               "type": "text",
               "text": "姓名:",
-              "size": "md"
+              "size": "md",
+              "wrap": true
             }
           ]
         },
@@ -36,7 +37,8 @@
             {
               "type": "text",
               "text": "好康訊息:",
-              "size": "md"
+              "size": "md",
+              "wrap": true
             }
           ]
         }                 
