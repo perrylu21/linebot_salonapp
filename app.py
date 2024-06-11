@@ -165,10 +165,16 @@ def callback():
                 url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/'+'?UserLineId='+user_profile.user_id+'&'\
                         + 'SalonID=' + salon_id
                 print(url_string)
-                UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
+                if salon_id == '496':
+                    UpdateFlexMessageURL('card_496_org.json', 'card_496_new.json', url_string)
+                    FlexMessage = json.load(open('card_496_new.json','r',encoding='utf-8'))
+                else:
+                    UpdateFlexMessageURL('card_org.json', 'card_new.json', url_string)
+                    FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
                             
                 #display flex message menu with linebot
-                FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
+                
+                #FlexMessage = json.load(open('card_new.json','r',encoding='utf-8'))
                 line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
                 #pass user id to iSalon web app
                 user_data = {'UserLineId':user_profile.user_id,'SalonID':salon_id}
@@ -186,11 +192,16 @@ def callback():
                 url_string = 'https://www.ez-nail.com/eznail_mobile_hnp/artworks.aspx'+'?UserLineId='+user_profile.user_id+'&'\
                         + 'SalonID=' + salon_id
                 print(url_string)
-                UpdateFlexMessageURL('artworks_org.json', 'artworks_new.json', url_string)
-                            
-                #display flex message menu with linebot
-                FlexMessage = json.load(open('artworks_new.json','r',encoding='utf-8'))
-                line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
+                if salon_id == '496':
+                    UpdateFlexMessageURL('artworks_496_org.json', 'artworks_496_new.json', url_string)
+                    #display flex message menu with linebot
+                    FlexMessage = json.load(open('artworks_496_new.json','r',encoding='utf-8'))
+                else:
+                    UpdateFlexMessageURL('artworks_org.json', 'artworks_new.json', url_string)
+                    #display flex message menu with linebot
+                    FlexMessage = json.load(open('artworks_new.json','r',encoding='utf-8'))
+                
+                #line_bot_api.reply_message(reply_token, FlexSendMessage('profile',FlexMessage))
                 #pass user id to iSalon web app
                 user_data = {'UserLineId':user_profile.user_id,'SalonID':salon_id}
 
