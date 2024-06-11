@@ -50,7 +50,10 @@ def callback():
             print(text_msg) 
         
             #load booking json template and update booking info
-            f = open('booking.json')
+            if salon_id == '496':
+                f = open('booking_496.json')
+            else:
+                f = open('booking.json')
             # returns JSON object as a dictionary
             json_text = json.load(f)
             
@@ -76,8 +79,12 @@ def callback():
             json_data = json.dumps(json_text,indent=2,ensure_ascii=False).encode('utf8')
             #print(json_data.decode())
             f.close()
-            with open('booking_new.json', 'w', encoding='utf8') as json_file:
-                json.dump(json_text,json_file,ensure_ascii=False)
+            if salon_id == '496':
+                with open('booking_496_new.json', 'w', encoding='utf8') as json_file:
+                    json.dump(json_text,json_file,ensure_ascii=False)
+            else:
+                with open('booking_new.json', 'w', encoding='utf8') as json_file:
+                    json.dump(json_text,json_file,ensure_ascii=False)
         else: #promotion message
             text_msg = "姓名:" + name_par + "\n" + \
                     "優惠:" + message_par + "\n" + \
@@ -121,7 +128,10 @@ def callback():
             print('lineid_par:%s'%lineid_par)
             print('message_par:%s'%message_par)
             if message_par == None: #booking flex message
-                FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
+                if salon_id == '496':
+                    FlexMessage = json.load(open('booking_496_new.json','r',encoding='utf-8'))
+                else:
+                    FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
                 line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
             else:
                 FlexMessage = json.load(open('message_new.json','r',encoding='utf-8'))
