@@ -13,7 +13,7 @@
       "contents": [
         {
           "type": "text",
-          "text": "iSalon愛沙龍 預約App",
+          "text": "妮可和諧粉彩預約App",
           "size": "xl",
           "weight": "bold",
           "color": "#0099ff"
@@ -38,8 +38,8 @@
           "type": "button",
           "action": {
             "type": "uri",
-            "label": "iSalon 作品集(請按我)",
-            "uri": "https://www.ez-nail.com/eznail_mobile_hnp/artworks.aspx?salonid=420"
+            "label": "Nicole預約App(請按我)",
+            "uri": "https://www.ez-nail.com/eznail_mobile_hnp/default.aspx?salonid=496"
           }
         }
       ]
