@@ -120,7 +120,11 @@ def callback():
             f.close()
             with open('message_new.json', 'w', encoding='utf8') as json_file:
                 json.dump(json_text,json_file,ensure_ascii=False)            
-            
+        
+        
+        print('reply_token:\n')    
+        reply_token = json_data['events'][0]['replyToken']
+        print(reply_token)
         #execute push message   
 
         try:
@@ -134,12 +138,12 @@ def callback():
                     FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
                 line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
                 #add message to salon id owner
-                line_bot_api.reply_message(token,FlexSendMessage('booking',FlexMessage))
+                #line_bot_api.reply_message(token,FlexSendMessage('booking',FlexMessage))
             else: #promotion flex message
                 FlexMessage = json.load(open('message_new.json','r',encoding='utf-8'))
                 line_bot_api.push_message(lineid_par,FlexSendMessage('message',FlexMessage))  
                 #add message to salon id owner
-                line_bot_api.reply_message(token,FlexSendMessage('message',FlexMessage))               
+                #line_bot_api.reply_message(token,FlexSendMessage('message',FlexMessage))               
             return text_msg
         except LineBotApiError as e:
             print("LineBot Error:{0}".format(e.message))
