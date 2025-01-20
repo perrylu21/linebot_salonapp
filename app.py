@@ -124,7 +124,7 @@ def callback():
         
         print('reply_token:\n')    
         #reply_token = json_data['events'][0]['replyToken']
-        print(json_data['events'])
+        print(json_data)
         #execute push message   
 
         try:
