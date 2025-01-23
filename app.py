@@ -134,10 +134,6 @@ def callback():
                 else:
                     FlexMessage = json.load(open('booking_new.json','r',encoding='utf-8'))
                 line_bot_api.push_message(lineid_par,FlexSendMessage('booking',FlexMessage)) 
-                #test
-                print('line@')
-                line_bot_api.push_message('@314xdlcy',FlexSendMessage('booking',FlexMessage)) 
-
                 #add message to salon id owner
                 #line_bot_api.reply_message(token,FlexSendMessage('booking',FlexMessage))
             else: #promotion flex message
